@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "backend/server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node backend/server.js",
-    "dev": "nodemon backend/server.js",
-    "postinstall": "(cd frontend && npm install --legacy-peer-deps && npm run build) || echo 'Frontend build failed'"
-  },
+"scripts": {
+  "test": "echo \"Error: no test specified\" && exit 1",
+  "start": "node backend/server.js",
+  "dev": "nodemon backend/server.js",
+  "postinstall": "cd frontend && npm install --legacy-peer-deps && npm run build"
+},
   "author": "",
   "license": "ISC",
   "dependencies": {
