@@ -1,6 +1,7 @@
-const app = require("./app");
+const express = require('express');
+const app = require('./app');
 const cloudinary = require('cloudinary').v2;
-const connectDatabase = require("./config/database");
+const connectDatabase = require('./config/database');
 const path = require('path');
 
 // Handling uncaught exceptions
@@ -25,7 +26,7 @@ cloudinary.config({
     api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
-// Serve the frontend
+// Serve the frontend (adjust path if necessary)
 const buildPath = path.join(__dirname, "../frontend/build");
 app.use(express.static(buildPath));
 app.get("*", (req, res) => {
