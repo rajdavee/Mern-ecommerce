@@ -1,34 +1,40 @@
-const app = require("./app");
-const cloudinary = require('cloudinary').v2;
-const connectDatabase = require("./config/database");
+const express = require('express');
+const app = express();
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const fileUpload = require('express-fileupload');
+const dotenv = require('dotenv');
+const errorMiddleware = require('./middleware/error');
+const path = require('path');
 
-// Handling uncaught exceptions
-process.on("uncaughtException", (err) => {
-    console.error(`Error: ${err.message}`);
-    console.error("Shutting down the server due to uncaught exceptions");
-    process.exit(1);
+if (process.env.NODE_ENV !== "PRODUCTION") {
+    dotenv.config({ path: "backend/config/config.env" });
+}
+
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ limit: '50mb', extended: true }));
+app.use(cookieParser());
+app.use(fileUpload({ useTempFiles: true, tempFileDir: '/tmp/' }));
+
+// Import routes
+const productRoutes = require('./routes/productRoute');
+const userRoutes = require('./routes/userRoute');
+const orderRoutes = require('./routes/orderRoute');
+const paymentRoutes = require('./routes/paymentRoute');
+
+app.use('/api/v1', productRoutes);
+app.use('/api/v1', userRoutes);
+app.use('/api/v1', orderRoutes);
+app.use('/api/v1', paymentRoutes);
+
+// Serve frontend
+const buildPath = path.join(__dirname, "../frontend/build");
+app.use(express.static(buildPath));
+app.get("*", (req, res) => {
+    res.sendFile(path.resolve(buildPath, "index.html"));
 });
 
-// Connect to the database
-connectDatabase();
+// Error handling middleware
+app.use(errorMiddleware);
 
-// Cloudinary configuration
-cloudinary.config({
-    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-    api_key: process.env.CLOUDINARY_API_KEY,
-    api_secret: process.env.CLOUDINARY_API_SECRET
-});
-
-const PORT = process.env.PORT || 5000;
-const server = app.listen(PORT, () => {
-    console.log(`Server is working on http://localhost:${PORT}`);
-});
-
-// Unhandled promise rejection
-process.on("unhandledRejection", (err) => {
-    console.error(`Error: ${err.message}`);
-    console.error("Shutting down the server due to unhandled promise rejection");
-    server.close(() => {
-        process.exit(1);
-    });
-});
+module.exports = app;
