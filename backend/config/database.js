@@ -1,33 +1,12 @@
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient } = require('mongodb');
 
-// Your MongoDB connection URI
-const uri = process.env.DB_URI; // Make sure DB_URI is correctly set in your environment
+const uri = process.env.MONGO_URI; // Ensure this is set correctly
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
-
-const client = new MongoClient(uri, {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    strict: true,
-    deprecationErrors: true,
+client.connect(err => {
+  if (err) {
+    console.error('Failed to connect to MongoDB:', err);
+    process.exit(1);
   }
+  console.log('Connected to MongoDB');
 });
-async function run() {
-  try {
-    // Connect the client to the server
-    await client.connect();
-
-    // Send a ping to confirm a successful connection
-    await client.db("admin").command({ ping: 1 });
-    console.log("Pinged your deployment. You successfully connected to MongoDB!");
-
-  } catch (error) {
-    console.error("Error connecting to MongoDB:", error);
-
-  } finally {
-    // Ensure that the client will close when you finish/error
-    await client.close();
-  }
-}
-
-// Execute the function
-run().catch(console.dir);
