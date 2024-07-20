@@ -25,9 +25,11 @@ app.use('/api/v1', userRoutes);
 app.use('/api/v1', orderRoutes);
 app.use('/api/v1', paymentRoutes);
 
+// Serve static files from the frontend build directory
 const buildPath = path.join(__dirname, "../frontend/build");
 app.use(express.static(buildPath));
-app.get("*", (req, res) => {
+
+app.get('*', (req, res) => {
     res.sendFile(path.resolve(buildPath, "index.html"));
 });
 
