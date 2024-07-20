@@ -1,40 +1,49 @@
-const app = require("./app");
-const cloudinary = require('cloudinary').v2;
-const connectDatabase = require("./config/database");
+const express = require('express');
+const app = express();
+const cookieParser = require('cookie-parser');
+const fileUpload = require('express-fileupload');
+const dotenv = require('dotenv');
+const errorMiddleware = require('./middleware/error');
+const path = require('path');
 
-// Handling uncaught exceptions
-process.on("uncaughtException", (err) => {
-    console.error(`Error: ${err.message}`);
-    console.error("Shutting down the server due to uncaught exceptions");
-    process.exit(1);
-});
-
-// Config
+// Load environment variables from config file if not in production
 if (process.env.NODE_ENV !== "PRODUCTION") {
     console.log("Loading environment variables from backend/config/config.env");
-    require('dotenv').config({ path: "backend/config/config.env" });
-    console.log("Environment variables loaded:", process.env);
+    dotenv.config({ path: "backend/config/config.env" });
 }
 
-// Connect to the database
-connectDatabase();
+// Ensure required environment variables are present
+if (!process.env.PORT || !process.env.CLOUDINARY_CLOUD_NAME || !process.env.CLOUDINARY_API_KEY || !process.env.CLOUDINARY_API_SECRET) {
+    console.error("Missing required environment variables");
+    process.exit(1);
+}
 
-// Cloudinary configuration
-cloudinary.config({
-    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-    api_key: process.env.CLOUDINARY_API_KEY,
-    api_secret: process.env.CLOUDINARY_API_SECRET
+// Middleware
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ limit: '50mb', extended: true }));
+app.use(cookieParser());
+app.use(fileUpload({ useTempFiles: true, tempFileDir: '/tmp/' }));
+
+// Import routes
+const productRoutes = require('./routes/productRoute');
+const userRoutes = require('./routes/userRoute');
+const orderRoutes = require('./routes/orderRoute');
+const paymentRoutes = require('./routes/paymentRoute');
+
+// Use routes
+app.use('/api/v1', productRoutes);
+app.use('/api/v1', userRoutes);
+app.use('/api/v1', orderRoutes);
+app.use('/api/v1', paymentRoutes);
+
+// Serve static files from the React app
+const buildPath = path.join(__dirname, "../frontend/build");
+app.use(express.static(buildPath));
+app.get("*", (req, res) => {
+    res.sendFile(path.resolve(buildPath, "index.html"));
 });
 
-const server = app.listen(process.env.PORT, () => {
-    console.log(`Server is working on http://localhost:${process.env.PORT}`);
-});
+// Error handling middleware
+app.use(errorMiddleware);
 
-// Unhandled promise rejection
-process.on("unhandledRejection", (err) => {
-    console.error(`Error: ${err.message}`);
-    console.error("Shutting down the server due to unhandled promise rejection");
-    server.close(() => {
-        process.exit(1);
-    });
-});
+module.exports = app;
