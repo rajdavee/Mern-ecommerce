@@ -36,6 +36,6 @@ CLOUDINARY_API_SECRET
 
 ## Author
 
-**Instagram** Click [Here](https://www.instagram.com/meabhisingh) **@meRajDave**
+**Instagram** Click [Here](http://instagram.com/rajdaveeee) **@meRajDave**
 
-**LinkedIn** Click [Here](www.linkedin.com/in/raj-dave-a61a30284) **@meAbhiSingh**
+**LinkedIn** Click [Here](www.linkedin.com/in/raj-dave-a61a30284) **@meRajDave**

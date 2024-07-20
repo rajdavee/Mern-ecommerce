@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // const app = require("./app");
 // const cloudinary = require('cloudinary').v2;
 // const connectDatabase = require("./config/database");
@@ -54,6 +55,20 @@ if (process.env.NODE_ENV !== "PRODUCTION") {
 }
 
 // Connecting to database
+=======
+const app = require('./app');
+const cloudinary = require('cloudinary').v2;
+const connectDatabase = require('./config/database');
+
+// Handling uncaught exceptions
+process.on('uncaughtException', (err) => {
+    console.log(`Error: ${err.message}`);
+    console.log('Shutting down the server due to uncaught exceptions');
+    process.exit(1);
+});
+
+// Connect to the database
+>>>>>>> origin/master
 connectDatabase();
 
 cloudinary.config({
@@ -62,6 +77,7 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
+<<<<<<< HEAD
 const server = app.listen(process.env.PORT, () => {
   console.log(`Server is working on http://localhost:${process.env.PORT}`);
 });
@@ -74,4 +90,20 @@ process.on("unhandledRejection", (err) => {
   server.close(() => {
     process.exit(1);
   });
+=======
+const port = process.env.PORT || 3000;
+
+// Start the server
+const server = app.listen(port, () => {
+    console.log(`Server is running on http://localhost:${port}`);
+});
+
+// Unhandled promise rejection
+process.on('unhandledRejection', (err) => {
+    console.log(`Error: ${err.message}`);
+    console.log('Shutting down the server due to unhandled promise rejection');
+    server.close(() => {
+        process.exit(1);
+    });
+>>>>>>> origin/master
 });

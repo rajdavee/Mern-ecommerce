@@ -1,10 +1,14 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "name": "ecommerce",
+=======
+>>>>>>> origin/master
   "builds": [
     {
       "src": "backend/server.js",
       "use": "@vercel/node"
+<<<<<<< HEAD
     },
     {
       "src": "frontend/package.json",
@@ -12,16 +16,26 @@
       "config": {
         "distDir": "frontend/build"
       }
+=======
+>>>>>>> origin/master
     }
   ],
   "routes": [
     {
       "src": "/api/(.*)",
+<<<<<<< HEAD
       "dest": "backend/server.js"
     },
     {
       "src": "/(.*)",
       "dest": "frontend/build/index.html"
+=======
+      "dest": "/backend/server.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/public/$1"
+>>>>>>> origin/master
     }
   ]
 }
