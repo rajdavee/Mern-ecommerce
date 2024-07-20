@@ -1,7 +1,7 @@
 const { MongoClient, ServerApiVersion } = require('mongodb');
 
 // Your MongoDB connection URI
-const uri =DB_URI
+const uri=process.envDB_URI;
 
 // Create a MongoClient with options
 const client = new MongoClient(uri, {
