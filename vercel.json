@@ -6,7 +6,7 @@
       "src": "backend/server.js",
       "use": "@vercel/node",
       "config": {
-        "installCommand": "npm install --legacy-peer-deps"
+        "includeFiles": "backend/**"
       }
     },
     {
