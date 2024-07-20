@@ -1,8 +1,7 @@
 const express = require('express');
-const app = require('./app');
+const app = express();
 const cloudinary = require('cloudinary').v2;
 const connectDatabase = require('./config/database');
-const path = require('path');
 
 // Handling uncaught exceptions
 process.on("uncaughtException", (err) => {
@@ -26,11 +25,20 @@ cloudinary.config({
     api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
-// Serve the frontend (adjust path if necessary)
-const buildPath = path.join(__dirname, "../frontend/build");
-app.use(express.static(buildPath));
-app.get("*", (req, res) => {
-    res.sendFile(path.resolve(buildPath, "index.html"));
+// API routes
+const productRoutes = require('./routes/productRoute');
+const userRoutes = require('./routes/userRoute');
+const orderRoutes = require('./routes/orderRoute');
+const paymentRoutes = require('./routes/paymentRoute');
+
+app.use('/api/v1/products', productRoutes);
+app.use('/api/v1/users', userRoutes);
+app.use('/api/v1/orders', orderRoutes);
+app.use('/api/v1/payments', paymentRoutes);
+
+// Catch-all route for handling requests
+app.get('*', (req, res) => {
+    res.status(404).send('Not Found');
 });
 
 const server = app.listen(process.env.PORT, () => {
