@@ -3,17 +3,14 @@ const { MongoClient, ServerApiVersion } = require('mongodb');
 // Your MongoDB connection URI
 const uri = process.env.DB_URI; // Make sure DB_URI is correctly set in your environment
 
-// Create a MongoClient with options
+
 const client = new MongoClient(uri, {
   serverApi: {
     version: ServerApiVersion.v1,
     strict: true,
     deprecationErrors: true,
-  },
-  useNewUrlParser: true,  // Include this option to avoid deprecation warnings
-  useUnifiedTopology: true // Recommended option for stable connections
+  }
 });
-
 async function run() {
   try {
     // Connect the client to the server
