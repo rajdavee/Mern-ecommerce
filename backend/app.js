@@ -1,6 +1,5 @@
 const express = require('express');
 const path = require('path');
-const app = express();
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const fileUpload = require('express-fileupload');
@@ -8,9 +7,9 @@ const dotenv = require('dotenv');
 const errorMiddleware = require('./middleware/error');
 
 // Load environment variables
-if (process.env.NODE_ENV !== "PRODUCTION") {
-    dotenv.config({ path: "backend/config/config.env" });
-}
+dotenv.config({ path: path.join(__dirname, 'config', 'config.env') });
+
+const app = express();
 
 // Middleware
 app.use(express.json({ limit: '50mb' }));
@@ -18,7 +17,7 @@ app.use(express.urlencoded({ limit: '50mb', extended: true }));
 app.use(cookieParser());
 app.use(fileUpload({ useTempFiles: true, tempFileDir: '/tmp/' }));
 
-// Static files directory (if you have any)
+// Static files directory
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Import routes
