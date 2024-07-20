@@ -10,9 +10,7 @@ process.on("uncaughtException", (err) => {
 });
 
 // Config
-// Config
 require('dotenv').config(); 
-
 
 // Connect to the database
 connectDatabase();
