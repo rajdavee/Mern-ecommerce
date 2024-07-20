@@ -1,12 +1,15 @@
-const { MongoClient } = require('mongodb');
+const mongoose = require("mongoose");
 
-const uri = process.env.MONGO_URI; // Ensure this is set correctly
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+const connectDatabase = () => {
+  mongoose
+    .connect(process.env.DB_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+    })
+    .then((data) => {
+      console.log(`Mongodb connected with server: ${data.connection.host}`);
+    });
+};
 
-client.connect(err => {
-  if (err) {
-    console.error('Failed to connect to MongoDB:', err);
-    process.exit(1);
-  }
-  console.log('Connected to MongoDB');
-});
+module.exports = connectDatabase;
