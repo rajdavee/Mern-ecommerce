@@ -28,6 +28,10 @@
     "react-dom": "^18.3.1",
     "react-helmet": "^6.1.0",
     "react-icon": "^1.0.0",
+<<<<<<< HEAD
+=======
+    "react-alert-template-basic": "^1.0.0",
+>>>>>>> origin/master
     "react-icons": "^5.2.1",
     "react-js-pagination": "^3.0.3",
     "react-material-ui-carousel": "^3.4.2",
@@ -36,11 +40,15 @@
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.24.1",
     "react-scripts": "5.0.1",
+    "redux": "^4.2.1",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^3.1.0",
     "web-vitals": "^2.1.4",
     "webfontloader": "^1.6.28",
     "webp-converter": "^2.3.3"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.3"
   },
   "scripts": {
     "start": "react-scripts start",

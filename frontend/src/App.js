@@ -59,7 +59,7 @@ function App() {
     };
   
     try {
-      const { data } = await axios.get("/api/v1/stripeapikey", config);
+      const { data } = await axios.get("https://mernprojectecommerce-vj6s.onrender.com/api/v1/stripeapikey", config);
       setStripeApiKey(data.stripeApiKey);
     } catch (error) {
       console.error("Failed to fetch Stripe API key", error);
