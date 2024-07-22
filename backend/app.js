@@ -18,7 +18,7 @@ app.use(cookieParser());
 app.use(fileUpload({ useTempFiles: true, tempFileDir: '/tmp/' }));
 
 // Enable CORS
-app.use(cors({ origin: 'https://your-vercel-app.vercel.app' }));
+app.use(cors({ origin: 'https://mern-project-ecommerce-ochre.vercel.app/' }));
 
 // Import routes
 const productRoutes = require('./routes/productRoute');
