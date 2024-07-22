@@ -228,7 +228,7 @@ const Payment = () => {
         },
       };
       const { data } = await axios.post(
-        "/api/v1/payment/process",
+        "https://mernprojectecommerce-vj6s.onrender.com/api/v1/payment/process",
         paymentData,
         config
       );
