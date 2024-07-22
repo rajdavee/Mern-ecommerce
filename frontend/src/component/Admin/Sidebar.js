@@ -3,14 +3,14 @@ import "./sidebar.css";
 import logo from "../../images/logo.png";
 import { Link } from "react-router-dom";
 import { TreeView, TreeItem } from "@material-ui/lab";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import PostAddIcon from "@material-ui/icons/PostAdd";
-import AddIcon from "@material-ui/icons/Add";
-import ImportExportIcon from "@material-ui/icons/ImportExport";
-import ListAltIcon from "@material-ui/icons/ListAlt";
-import DashboardIcon from "@material-ui/icons/Dashboard";
-import PeopleIcon from "@material-ui/icons/People";
-import RateReviewIcon from "@material-ui/icons/RateReview";
+import ExpandMoreIcon from "@material-ui/ExpandMore";
+import PostAddIcon from "@material-ui/PostAdd";
+import AddIcon from "@material-ui/Add";
+import ImportExportIcon from "@material-ui/ImportExport";
+import ListAltIcon from "@material-ui/ListAlt";
+import DashboardIcon from "@material-ui/Dashboard";
+import PeopleIcon from "@material-ui/People";
+import RateReviewIcon from "@material-ui/RateReview";
 
 const Sidebar = () => {
   return (
