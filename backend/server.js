@@ -9,7 +9,7 @@ process.on("uncaughtException", (err) => {
     process.exit(1);
 });
 
-// Config
+// Load environment variables
 if (process.env.NODE_ENV !== "PRODUCTION") {
     require('dotenv').config({ path: "backend/config/config.env" });
 }
@@ -24,11 +24,12 @@ cloudinary.config({
     api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
-const server = app.listen(process.env.PORT, () => {
-    console.log(`Server is working on http://localhost:${process.env.PORT}`);
+// Start the server
+const server = app.listen(process.env.PORT || 4000, () => {
+    console.log(`Server is working on http://localhost:${process.env.PORT || 4000}`);
 });
 
-// Unhandled promise rejection
+// Handling unhandled promise rejections
 process.on("unhandledRejection", (err) => {
     console.log(`Error: ${err.message}`);
     console.log("Shutting down the server due to unhandled promise rejection");
