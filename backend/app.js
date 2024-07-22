@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 // const express = require('express');
 // const app = express();
 // const cookieParser = require('cookie-parser');
@@ -38,8 +38,6 @@
 // app.use(errorMiddleware);
 
 // module.exports = app;
-=======
->>>>>>> 59510e65afaf6c93cc8d8673405a8d310baca812
 const express = require('express');
 const app = express();
 const cookieParser = require('cookie-parser');
@@ -69,10 +67,7 @@ app.use('/api/v1', userRoutes);
 app.use('/api/v1', orderRoutes);
 app.use('/api/v1', paymentRoutes);
 
-<<<<<<< HEAD
 // Serve frontend
-=======
->>>>>>> 59510e65afaf6c93cc8d8673405a8d310baca812
 const buildPath = path.join(__dirname, "../frontend/build");
 app.use(express.static(buildPath));
 app.get("*", (req, res) => {

@@ -36,7 +36,6 @@
 //         process.exit(1);
 //     });
 // });
-
 const app = require("./app");
 const cloudinary = require('cloudinary').v2;
 const connectDatabase = require("./config/database");
@@ -75,7 +74,3 @@ process.on("unhandledRejection", (err) => {
         process.exit(1);
     });
 });
-<<<<<<< HEAD
-
-=======
->>>>>>> 59510e65afaf6c93cc8d8673405a8d310baca812
