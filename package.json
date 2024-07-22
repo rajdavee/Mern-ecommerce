@@ -3,14 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "backend/server.js",
-"scripts": {
-  "test": "echo \"Error: no test specified\" && exit 1",
-  "start": "node backend/server.js",
-  "dev": "nodemon backend/server.js"
-},
-
-  "author": "",
-  "license": "ISC",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node backend/server.js",
+    "dev": "nodemon backend/server.js",
+    "vercel-build": "cd frontend && npm install && npm run build"
+  },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
