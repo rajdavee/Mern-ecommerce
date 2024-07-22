@@ -7,8 +7,15 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node backend/server.js",
     "dev": "nodemon backend/server.js",
+<<<<<<< HEAD
     "vercel-build": "cd frontend && npm install && npm run build"
   },
+=======
+    "build": "cd frontend && npm install && npm run build"
+  },
+  "author": "",
+  "license": "ISC",
+>>>>>>> 59510e65afaf6c93cc8d8673405a8d310baca812
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
