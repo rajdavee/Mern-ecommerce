@@ -6,10 +6,10 @@ import { useAlert } from "react-alert";
 import { Button } from "@material-ui/core";
 import MetaData from "../layout/MetaData";
 import AccountTree from '@mui/icons-material/AccountTree';
-import DescriptionIcon from "@material-ui/icons/Description";
+import DescriptionIcon from "@material-ui/Description";
 import StorageIcon from "@material-ui/icons/Storage";
-import SpellcheckIcon from "@material-ui/icons/Spellcheck";
-import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
+import SpellcheckIcon from "@material-ui/Spellcheck";
+import AttachMoneyIcon from "@material-ui/AttachMoney";
 import SideBar from "./Sidebar";
 import { NEW_PRODUCT_RESET } from "../../constants/productConstants";
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
