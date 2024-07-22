@@ -21,7 +21,6 @@
     "pica": "^9.0.1",
     "react": "^18.3.1",
     "react-alert": "^7.0.3",
-    "react-alert-template-basic": "^1.0.0",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.3.1",
     "react-helmet": "^6.1.0",
@@ -40,6 +39,9 @@
     "web-vitals": "^2.1.4",
     "webfontloader": "^1.6.28",
     "webp-converter": "^2.3.3"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.3"
   },
   "scripts": {
     "start": "react-scripts start",
