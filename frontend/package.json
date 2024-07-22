@@ -20,7 +20,6 @@
     "overlay-navbar": "^1.2.3",
     "pica": "^9.0.1",
     "react": "^18.3.1",
-    "react-alert": "^7.0.3",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.3.1",
     "react-helmet": "^6.1.0",
@@ -35,6 +34,7 @@
     "react-scripts": "5.0.1",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^3.1.0",
+    "react-toastify": "^9.1.0",
     "web-vitals": "^2.1.4",
     "webfontloader": "^1.6.28",
     "webp-converter": "^2.3.3"
