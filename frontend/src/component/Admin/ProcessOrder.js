@@ -7,7 +7,7 @@ import { getOrderDetails, clearErrors, updateOrder } from "../../actions/orderAc
 import { useSelector, useDispatch } from "react-redux";
 import Loader from "../layout/Loader/Loader";
 import { useAlert } from "react-alert";
-import AccountTreeIcon from "@material-ui/icons/AccountTree";
+import AccountTreeIcon from "@material-ui/AccountTree";
 import { UPDATE_ORDER_RESET } from "../../constants/orderConstants";
 import "./processOrder.css";
 
